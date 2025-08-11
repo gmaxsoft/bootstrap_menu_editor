@@ -1,0 +1,57 @@
+{
+  "name": "@maxsoft/bootstrap_menu_editor",
+  "version": "1.0.2",
+  "description": "Javascript Menu Editor Library (made with Typescript)",
+  "main": "./lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.umd.js"
+    },
+    "./lib/css/*": {
+      "import": "./lib/css/*",
+      "require": "./lib/css/*"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davicotico/menu-editor.git"
+  },
+  "keywords": [
+    "menu-editor",
+    "javascript-menu-editor",
+    "typescript-menu-editor",
+    "sortable",
+    "draggable",
+    "menu"
+  ],
+  "author": {
+    "name": "Maxsoft"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmaxsoft/Menu_Editor/issues"
+  },
+  "devDependencies": {
+    "@maxsoft/fontawesome-iconpicker": "^1.0.6",
+    "@types/node": "^24.2.1",
+    "@types/sortablejs": "^1.15.8",
+    "sass": "^1.90.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.1",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
+    "bootstrap": "^5.3.7",
+    "sortablejs": "^1.15.6"
+  }
+}
