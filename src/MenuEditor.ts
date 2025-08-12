@@ -5,7 +5,6 @@ import { NestedItemData, Itemlistener, ItemDataset, ItemData, MenuEditorOptions 
 import { datasetToItemData, getMaxNestedLevel, setDatasetToElement, updateLevels } from "./functions";
 import { ElementItem } from "./ElementItem";
 import { defaultOptions } from "./constants";
-
 export default class MenuEditor {
   private menuContainer: MenuContainer;
   private currentItem: ElementItem | null = null;

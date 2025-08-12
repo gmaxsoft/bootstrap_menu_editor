@@ -3,3 +3,6 @@ public
 examples
 src
 *.html
+*.ts
+.gitignore
+*.md

@@ -1,5 +1,5 @@
 import { MenuEditor } from '../src/index'
-import initializeIconPicker from '@maxsoft/fontawesome-iconpicker';
+import initializeIconPicker from '../src/IconPicker';
 
 const json = [
 	{
@@ -142,7 +142,7 @@ document.getElementById('btnOutput')?.addEventListener('click', () => {
 	txtOutput.value = me.getString();
 });
 
+initializeIconPicker('#txtIcon');
 me.setArray(json);
 me.mount();
 
-initializeIconPicker('#txtIcon');
