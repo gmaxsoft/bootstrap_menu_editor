@@ -1,22 +1,21 @@
-# Menu Editor
+# Bootstrap Menu Editor
 
 Remake of old Menu Editor Library (made with Typescript), works with Bootstrap 5. 
-
 
 ## Install
 
 Via NPM
 
 ```
-npm install @maxsoft/menu-editor
+npm install @maxsoft/bootstrap_menu_editor
 ```
 
 ## How to use
 
 ### Imports
 ```js
-import '@maxsoft/menu-editor/lib/css/styles.css';
-import { MenuEditor } from '@maxsoft/menu-editor';
+import '@maxsoft/bootstrap_menu_editor/lib/css/bootstrap_menu_editor.min.css';
+import { MenuEditor, initializeIconPicker } from '@maxsoft/bootstrap_menu_editor';
 ```
 
 ### Creating the object
@@ -156,3 +155,44 @@ Run this command
 ```shell
 npm run dev
 ```
+
+## Add IconPicker Modal
+
+**Include HTML**:
+   ```html
+   <div class="container mt-5">
+     <h1>FontAwesome Icon Picker</h1>
+     <div class="input-group mb-3">
+       <input type="text" id="myIconInput" class="form-control" placeholder="Kliknij, aby wybrać ikonę" readonly>
+       <span class="input-group-text" id="selectedIconDisplay"></span>
+     </div>
+   </div>
+   <div class="modal fade" id="iconPickerPopup" tabindex="-1" aria-labelledby="iconPickerModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="iconPickerModalLabel">Select the FontAwesome icon</h5>
+           <button type="button" class="btn-close" id="closePopup" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+			<div class="mb-3">
+              <input type="text" class="form-control" id="iconSearch" placeholder="Search for an icon by name...">
+            </div>
+           <div id="iconList" class="icon-list"></div>
+         </div>
+       </div>
+     </div>
+   </div>
+   ```
+
+   ## License
+   
+   MIT License. See [LICENSE](LICENSE) for details.
+   
+   ## Acknowledgments
+   
+   - [FontAwesome](https://fontawesome.com/) for the icon library.
+   - [Bootstrap](https://getbootstrap.com/) for the responsive UI framework.
+   - [Webpack](https://webpack.js.org/) for bundling.
+   
+   ---

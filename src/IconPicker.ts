@@ -1,4 +1,5 @@
 import '@fortawesome/fontawesome-free/css/all.css';
+import faIcons from './fontawesome-free-all.json';
 import * as bootstrap from 'bootstrap';
 
 /**
@@ -13,14 +14,15 @@ export default function initializeIconPicker(
   console.log('Initializing IconPicker with selector:', selector);
 
   const targetElement = document.querySelector<HTMLInputElement>(selector);
-  const popup = document.getElementById('iconPickerPopup') as HTMLElement | null;
-  const iconList = document.getElementById('iconList') as HTMLElement | null;
-  const closeButton = document.getElementById('closePopup') as HTMLElement | null;
-  const selectedIconDisplay = document.getElementById('selectedIconDisplay') as HTMLElement | null;
+  const popup = document.getElementById('iconPickerPopup') as HTMLElement;
+  const iconList = document.getElementById('iconList') as HTMLElement;
+  const closeButton = document.getElementById('closePopup') as HTMLElement;
+  const selectedIconDisplay = document.getElementById('selectedIconDisplay') as HTMLElement;
+  const searchInput = document.getElementById('iconSearch') as HTMLInputElement;
 
-  if (!targetElement || !popup || !iconList || !closeButton || !selectedIconDisplay) {
+  if (!targetElement || !popup || !iconList || !closeButton || !selectedIconDisplay || !searchInput) {
     console.error(
-      'Nie znaleziono wszystkich wymaganych elementów HTML. Sprawdź czy dodałeś okno modal z #iconPickerPopup!'
+      'Nie znaleziono wszystkich wymaganych elementów HTML. Sprawdź czy dodałeś okno modal z #iconPickerPopup i #iconSearch!'
     );
     return;
   }
@@ -32,14 +34,7 @@ export default function initializeIconPicker(
 
   async function getIcons(): Promise<string[]> {
     try {
-      console.log('Attempting to load JSON from: /fontawesome-free-all.json');
-      const response = await fetch('fontawesome-free-all.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const faIcons = await response.json();
       console.log('JSON loaded:', faIcons);
-
       const iconsArray = Array.isArray(faIcons) ? faIcons : Object.values(faIcons);
       return iconsArray as string[];
     } catch (error) {
@@ -48,9 +43,11 @@ export default function initializeIconPicker(
     }
   }
 
-  function populateIconList(iconList: HTMLElement, iconNames: string[]): void {
+  function populateIconList(iconList: HTMLElement, iconNames: string[], searchTerm: string = ''): void {
     iconList.innerHTML = '';
-    iconNames.forEach((iconName) => {
+    const filteredIcons = iconNames.filter(icon => icon.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    filteredIcons.forEach((iconName) => {
       const iconElement = document.createElement('div');
       iconElement.className = 'cursor-pointer p-2 rounded-md hover:bg-gray-200';
       iconElement.innerHTML = `<i class="${iconName} text-2xl"></i>`;
@@ -60,7 +57,8 @@ export default function initializeIconPicker(
     });
   }
 
-  function showPopup(): void {
+  function showPopup(icons: string[]): void {
+    populateIconList(iconList, icons);
     modal.show();
   }
 
@@ -71,8 +69,15 @@ export default function initializeIconPicker(
   // Kliknięcie w trigger otwiera modal i ładuje ikony
   targetElement.addEventListener('click', async () => {
     const icons = await getIcons();
-    populateIconList(iconList,icons);
-    showPopup();
+    showPopup(icons);
+  });
+
+  // Wyszukiwanie ikon
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value;
+    getIcons().then(icons => {
+      populateIconList(iconList, icons, searchTerm);
+    });
   });
 
   // Zamknięcie pickera

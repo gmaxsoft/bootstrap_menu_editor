@@ -1,6 +1,6 @@
 {
   "name": "@maxsoft/bootstrap_menu_editor",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Javascript/Bootsrap 5 Menu Editor Builder",
   "main": "./lib/index.js",
   "publishConfig": {
@@ -16,6 +16,11 @@
       "require": "./lib/css/*"
     }
   },
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib/**/*",
+    "fontawesome-free-all.json"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

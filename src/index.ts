@@ -4,4 +4,10 @@
  * @license MIT
  */
 import './scss/styles.scss';
-export { default as MenuEditor } from './MenuEditor';
+
+import MenuEditor from './MenuEditor';
+import initializeIconPicker from './IconPicker';
+
+// Reeksportuj MenuEditor jako domyślny i initializeIconPicker jako nazwany
+export { MenuEditor, initializeIconPicker };
+

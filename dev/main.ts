@@ -1,5 +1,4 @@
-import { MenuEditor } from '../src/index'
-import initializeIconPicker from '../src/IconPicker';
+import { MenuEditor, initializeIconPicker } from '../src/index'
 
 const json = [
 	{

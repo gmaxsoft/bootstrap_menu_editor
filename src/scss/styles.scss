@@ -62,3 +62,12 @@
 .icon-list div:hover {
   background-color: #f0f0f0;
 }
+
+#iconPickerPopup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: fit-content;
+  min-width: 600px;
+  z-index:9999999;
+}
